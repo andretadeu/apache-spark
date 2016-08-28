@@ -17,5 +17,3 @@ Create a simple cluster with master and one worker.
 docker run -d --name spark-master -e 'MASTER=true' <your Docker Hub ID>/apache-spark:latest
 docker run -d --name spark-worker01 --link spark-master:master <your Docker Hub ID>/apache-spark:latest
 ```
-
-The "master" in the link should be fixed, since it is used internally in the container.
