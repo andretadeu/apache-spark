@@ -46,7 +46,7 @@ RUN echo 'root:teste' | chpasswd && \
 COPY spark.sh /spark.sh
 RUN chmod +x /spark.sh
 
-RUN mkdir /inputs /outputs
+RUN mkdir /jobs /inputs /outputs
 
 VOLUME ["/inputs", "/outputs"]
 EXPOSE 22 8080 8081 7077 6066 4040
