@@ -1,5 +1,7 @@
 # apache-spark
 
+[![](https://images.microbadger.com/badges/image/andretadeu/apache-spark.svg)](https://microbadger.com/images/andretadeu/apache-spark "Get your own image badge on microbadger.com")
+
 Docker image for Apache Spark standalone
 
 ## How to use
