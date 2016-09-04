@@ -48,7 +48,7 @@ RUN chmod +x /spark.sh
 
 RUN mkdir /jobs /inputs /outputs
 
-VOLUME ["/inputs", "/outputs"]
+VOLUME ["/jobs", "/inputs", "/outputs"]
 EXPOSE 22 8080 8081 7077 6066 4040
 ENTRYPOINT [ "/spark.sh" ]
 CMD [ "start" ]
