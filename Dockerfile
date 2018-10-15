@@ -1,14 +1,14 @@
-FROM debian:jessie
-MAINTAINER "Andre Tadeu de Carvalho <andretadeu@jelastic.com>"
+FROM debian:stretch
+MAINTAINER "Andre Tadeu de Carvalho <andre.tadeu.de.carvalho@gmail.com>"
 
 ARG SCALA_VERSION=2.11.8
-ARG SPARK_PACKAGE=2.0.0-bin-hadoop2.7
+ARG SPARK_VERSION=2.3.2
 ENV SCALA_HOME=/opt/scala-${SCALA_VERSION} \
-    SPARK_HOME=/opt/spark-${SPARK_PACKAGE}
+    SPARK_HOME=/opt/spark-${SPARK_VERSION}-bin-hadoop2.7.tgz
 
 # Install wget, OpenJDK-8 and OpenSSH
-RUN echo 'deb http://httpredir.debian.org/debian jessie-backports main' > \
-    /etc/apt/sources.list.d/jessie-backports.list && \
+RUN echo 'deb http://httpredir.debian.org/debian stretch-backports main' > \
+    /etc/apt/sources.list.d/stretch-backports.list && \
     apt-get -qq update && \
     apt-get install -yqq wget openjdk-8-jdk openssh-server
 
@@ -19,10 +19,10 @@ RUN wget http://downloads.lightbend.com/scala/${SCALA_VERSION}/scala-${SCALA_VER
     rm -f /tmp/scala-${SCALA_VERSION}.tgz
 
 # Install Apache Spark
-RUN wget http://d3kbcqa49mib13.cloudfront.net/spark-${SPARK_PACKAGE}.tgz \
-    -O /tmp/spark-${SPARK_PACKAGE}.tgz && \
-    tar xf /tmp/spark-${SPARK_PACKAGE}.tgz -C /opt && \
-    rm -f /tmp/spark-${SPARK_PACKAGE}.tgz
+RUN wget http://ftp.unicamp.br/pub/apache/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop2.7.tgz \
+    -O /tmp/spark-${SPARK_VERSION}-bin-hadoop2.7.tgz && \
+    tar xf /tmp/spark-${SPARK_VERSION}-bin-hadoop2.7.tgz -C /opt && \
+    rm -f /tmp/spark-${SPARK_VERSION}-bin-hadoop2.7.tgz
 
 # I'm forced to append /etc/profile due to erratic behavior of ENV with PATH
 RUN echo export PATH=$PATH:$SCALA_HOME/bin:$SPARK_HOME/sbin:$SPARK_HOME/bin \
